@@ -1,4 +1,5 @@
 import { useLoaderData } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 const AllMovies = () => {
@@ -28,9 +29,8 @@ console.log(datas)
             </div>
 
             </div>
-            <button className="btn bg-red-600 text-white">See Details</button>
-          
-          
+            <Link to='/details'>   <button className="btn bg-red-600 text-white">See Details</button> </Link>
+         
 
             </div>)}
             </div>
