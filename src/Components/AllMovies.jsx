@@ -14,7 +14,7 @@ console.log(datas)
             <div className="grid grid-cols-3 gap-3"  >
 
             {datas.map(data=> <div key={data._id} className="card-body p-5 border-2 rounded-xl ">
-            <img src={data.poster} alt="" />
+            <img src={data.poster} alt="" className="h-[500px]"/>
             <div className="p-3">
             <div className="flex justify-between">
             <h1>{data.title}</h1>
@@ -29,7 +29,7 @@ console.log(datas)
             </div>
 
             </div>
-            <Link to='/details'>   <button className="btn bg-red-600 text-white">See Details</button> </Link>
+            <Link to={`/details/${data._id}`}>   <button className="btn bg-red-600 text-white">See Details</button> </Link>
          
 
             </div>)}

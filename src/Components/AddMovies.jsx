@@ -20,8 +20,9 @@ const AddMovies = () => {
        const genre= form.genre.value;
        const duration=form.duration.value;
        const released=  form.released.value;
-      
-       const movie={poster,title,genre,duration,rating,released};
+       const overview=form.overview.value;
+      console.log(overview)
+       const movie={poster,title,genre,duration,rating,overview, released};
        if(title.length<2 || duration<60){
         alert("Invalid title")
         navigate('/addMovies')
@@ -125,7 +126,7 @@ const AddMovies = () => {
                         </div>
                        
                     </div>
-                    <textarea name="" id=""></textarea>
+                    <textarea name="overview" id=""></textarea>
                 <div className="form-control mt-6">
                     <button className="btn btn-primary">ADD MOVIE</button>
                 </div>
