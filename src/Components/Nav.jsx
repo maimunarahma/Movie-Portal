@@ -21,12 +21,14 @@ const Nav = () => {
 
            <div className="navbar-end w-[50%] ">
            <ul className="flex justify-between items-center font-semibold ">
-            <li>HOME</li>
-            <li>ALL MOVIES</li>
+           
+            <Link to='/'> <li>HOME</li></Link>
+            <Link to='/allMovies'>   <li>ALL MOVIES</li></Link>
+         
             <li>UPCOMING</li>
            
             {user && <>
-                <Link><li>Add Movie</li></Link> 
+                <Link to='/addMovies'><li>Add Movie</li></Link> 
                 <Link><li>My Favourites</li></Link>
             </>}
          {user?<>

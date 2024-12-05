@@ -11,6 +11,9 @@ import Banner from './Banner.jsx';
 import Authentication from './Providers/Authentication.jsx';
 import Register from './Components/Register.jsx';
 import AddMovies from './Components/AddMovies.jsx';
+import Private from './Route/Private.jsx';
+import AllMovies from './Components/AllMovies.jsx';
+import Details from './Components/Details.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -28,7 +31,14 @@ const router = createBrowserRouter([
     },
     {
       path:'/addMovies',
-      element:<AddMovies></AddMovies>
+      element:<Private><AddMovies></AddMovies></Private>
+    },{
+      path:'/allMovies',
+      element:<AllMovies></AllMovies>,
+      loader:()=>fetch('http://localhost:4000/addMovies')
+    },{
+      path:'/details',
+      element:<Details></Details>
     }
   
   ]
