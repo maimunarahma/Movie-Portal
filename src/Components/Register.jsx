@@ -7,7 +7,7 @@ import { updateProfile } from "firebase/auth";
 const Register = () => {
     const { SignUp,user,setUser}=useContext(AuthContext);
     const navigate=useNavigate();
-const handleRegister = async (e) => {
+const handleRegister =  (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const pass = e.target.password.value;
@@ -15,7 +15,7 @@ const handleRegister = async (e) => {
     const pic = e.target.pic.value;
     console.log(email, pass);
     try {
-        const res = await  SignUp(email, pass);
+        const res =  SignUp(email, pass);
         setUser(res.user);
         updateProfile(res.user,{
             displayName:name,

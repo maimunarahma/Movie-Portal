@@ -1,5 +1,6 @@
 import banner from "./assets/images - Copy.jpg"
 import poster from "./assets/poster.jpg"
+import Featured from "./Components/Featured";
 
 const Banner = () => {
     return (
@@ -20,6 +21,7 @@ const Banner = () => {
     <div><h1>CHOOSE DATE</h1></div>
     <div></div>
 </div>
+<Featured></Featured>
         </div>
      
     );

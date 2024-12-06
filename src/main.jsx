@@ -20,7 +20,8 @@ const router = createBrowserRouter([
     element: <Root></Root>,
     children:[{
       path:'/',
-      element:<Banner></Banner>
+      element:<Banner></Banner>,
+      loader:()=>fetch('http://localhost:4000/featured')
     },{
       path:'/login',
       element:<Login></Login>
@@ -40,8 +41,8 @@ const router = createBrowserRouter([
       path:'/details/:id',
       element:<Details></Details>,
       loader:({params})=>fetch(`http://localhost:4000/details/${params.id}`)
-    }
-  
+    },
+   
   ]
   },
 ]);
