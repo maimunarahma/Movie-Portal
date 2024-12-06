@@ -15,10 +15,11 @@ import Private from './Route/Private.jsx';
 import AllMovies from './Components/AllMovies.jsx';
 import Details from './Components/Details.jsx';
 import MyFavourite from './Components/MyFavourite.jsx';
+import { ThemeProvider } from './Components/ThemeProvider.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root></Root>,
+    element: <ThemeProvider><Root></Root></ThemeProvider>,
     children:[{
       path:'/',
       element:<Banner></Banner>,

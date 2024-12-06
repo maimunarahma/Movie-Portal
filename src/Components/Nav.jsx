@@ -1,12 +1,18 @@
 import { useContext } from "react";
-import logo from "../assets/movie-logo-photographic-film-movie-camera-cinema-movie-projector-video-cameras-cinema-camera-circle-png-clipart.jpg"
-import Banner from '../Banner';
+
 import { BiCameraMovie } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../Providers/Authentication";
+import { ThemeContext } from "./ThemeProvider";
+import { FaMoon } from "react-icons/fa";
+import { FaSun } from "react-icons/fa";
+
 
 const Nav = () => {
     const {user,  signOutUser}=useContext(AuthContext);
+    const {theme, toggleTheme}=useContext(ThemeContext)
+    
+
     console.log(user)
     const handleSignOut=()=>{
         signOutUser();
@@ -27,6 +33,15 @@ const Nav = () => {
          
             <li>UPCOMING</li>
            
+            <button onClick={toggleTheme}
+        className="p-2 rounded-full bg-gray-300 dark:bg-gray-700 hover:bg-gray-400 dark:hover:bg-gray-600 transition"
+      >
+        {theme === "light" ? (
+          <FaMoon className="text-black" />
+        ) : (
+          <FaSun className="text-yellow-400" />
+        )}
+      </button>
             {user && <>
                 <Link to='/addMovies'><li>Add Movie</li></Link> 
                 <Link to={`/favourites/${user.email}`}><li>My Favourites</li></Link>
