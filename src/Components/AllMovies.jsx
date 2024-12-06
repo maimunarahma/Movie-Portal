@@ -13,26 +13,52 @@ console.log(datas)
             </div>
             <div className="grid grid-cols-3 gap-3"  >
 
-            {datas.map(data=> <div key={data._id} className="card-body p-5 border-2 rounded-xl ">
-            <img src={data.poster} alt="" className="h-[500px]"/>
-            <div className="p-3">
-            <div className="flex justify-between">
-            <h1>{data.title}</h1>
-            <h1>{data.rating}</h1>
-            </div>
+            {datas.map((data) => (
+  <div
+    key={data._id}
+    className="w-full   mx-auto bg-gray-800 border border-gray-700 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden mb-6"
+  >
+   
+    <img
+      src={data.poster}
+      alt="Movie Poster"
+     className="w-[500px] h-[500px]"
+    />
 
-            
-            <div className="flex justify-between gap-3">
-            <h2 className="rounded-xl">Genre: {data.genre}</h2>
-            <p>Duation:{data.duration}</p>
-            <p>Releasing Year: {data.released}</p>
-            </div>
+  
+    <div className="p-5 text-white">
+    
+      <div className="flex justify-between items-center mb-4">
+        <h1 className="text-lg md:text-2xl font-bold text-yellow-400 truncate">
+          {data.title}
+        </h1>
+        <span className="bg-yellow-500 text-gray-900 px-3 py-1 rounded-lg font-semibold text-sm md:text-base">
+          ⭐ {data.rating}
+        </span>
+      </div>
 
-            </div>
-            <Link to={`/details/${data._id}`}>   <button className="btn bg-red-600 text-white">See Details</button> </Link>
-         
+     
+      <div className="flex flex-wrap gap-3 justify-between text-sm md:text-base text-gray-300 mb-6">
+        <span className="bg-gray-700 px-3 py-1 rounded-full truncate">
+          Genre: {data.genre}
+        </span>
+        <span className="bg-gray-700 px-3 py-1 rounded-full truncate">
+          Duration: {data.duration}
+        </span>
+        <span className="bg-gray-700 px-3 py-1 rounded-full truncate">
+          Year: {data.released}
+        </span>
+      </div>
 
-            </div>)}
+      <Link to={`/details/${data._id}`}>
+        <button className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300">
+          See Details
+        </button>
+      </Link>
+    </div>
+  </div>
+))}
+
             </div>
           
         </div>

@@ -14,6 +14,7 @@ import AddMovies from './Components/AddMovies.jsx';
 import Private from './Route/Private.jsx';
 import AllMovies from './Components/AllMovies.jsx';
 import Details from './Components/Details.jsx';
+import MyFavourite from './Components/MyFavourite.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -42,9 +43,14 @@ const router = createBrowserRouter([
       element:<Details></Details>,
       loader:({params})=>fetch(`http://localhost:4000/details/${params.id}`)
     },
+  {
+    path:'/favourites/:email',
+    element: <MyFavourite></MyFavourite>,
+    loader:({params})=> fetch(`http://localhost:4000/favourites/${params.email}`)
+  },
    
   ]
-  },
+  }
 ]);
 
 createRoot(document.getElementById('root')).render(

@@ -17,26 +17,51 @@ const Featured = () => {
 
             <div className="grid grid-cols-3 gap-3 w-[70%] mx-auto">
                 {movies.map(movie=>
-                    <div key={movie._id} className="col-span-1  p-5 border-2 rounded-xl" >
-                              <img src={movie.poster} alt="" className="h-[500px]"/>
-            <div className="p-5">
-            <div className="flex justify-between">
-            <h1>{movie.title}</h1>
-            <h1>{movie.rating}</h1>
-            </div>
-
-            
-            <div className="flex justify-between gap-3">
-            <h2 className="rounded-xl">Genre: {movie.genre}</h2>
-            <p>Duation:{movie.duration}</p>
-            <p>Releasing Year: {movie.released}</p>
-            </div>
-
-            </div>
-            <Link to={`/details/${movie._id}`}>   <button className="btn bg-red-600 text-white">See Details</button> </Link>
-         
-
+                    <div
+                    key={movie._id}
+                    className="col-span-1 bg-gray-800 border border-gray-700 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden"
+                  >
+                
+                    <img
+                      src={movie.poster}
+                      alt="Movie Poster"
+                      className="w-full h-[300px] sm:h-[400px] md:h-[450px] lg:h-[500px] object-cover transition-transform duration-300 hover:scale-105"
+                    />
+                  
+                   
+                    <div className="p-5 text-white">
+                    
+                      <div className="flex justify-between items-center mb-4">
+                        <h1 className="text-lg md:text-2xl font-bold text-yellow-400 truncate">
+                          {movie.title}
+                        </h1>
+                        <span className="bg-yellow-500 text-gray-900 px-3 py-1 rounded-lg font-semibold text-sm md:text-base">
+                          ⭐ {movie.rating}
+                        </span>
+                      </div>
+                  
+                   
+                      <div className="flex flex-wrap gap-4 justify-between text-sm md:text-base text-gray-300 mb-6">
+                        <span className="bg-gray-700 px-3 py-1 rounded-full truncate">
+                          Genre: {movie.genre}
+                        </span>
+                        <span className="bg-gray-700 px-3 py-1 rounded-full truncate">
+                          Duration: {movie.duration}
+                        </span>
+                        <span className="bg-gray-700 px-3 py-1 rounded-full truncate">
+                          Year: {movie.released}
+                        </span>
+                      </div>
+                  
+                   
+                      <Link to={`/details/${movie._id}`}>
+                        <button className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300 shadow-md">
+                          See Details
+                        </button>
+                      </Link>
                     </div>
+                  </div>
+                  
                 )}
              
             </div>

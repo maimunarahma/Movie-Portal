@@ -29,7 +29,7 @@ const Nav = () => {
            
             {user && <>
                 <Link to='/addMovies'><li>Add Movie</li></Link> 
-                <Link><li>My Favourites</li></Link>
+                <Link to={`/favourites/${user.email}`}><li>My Favourites</li></Link>
             </>}
          {user?<>
             <img src={user.photoURL} alt="" className="w-10 rounded-full border-2 border-red-500" />
