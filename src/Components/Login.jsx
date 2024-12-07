@@ -4,7 +4,7 @@ import { AuthContext } from "../Providers/Authentication";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-
+ 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { auth } from "./firebase.init";
@@ -55,11 +55,11 @@ const handleLogin = async (e) => {
  
     return (
         <div >
-            <div style={{backgroundImage:`url(${log})`}} className="  opacity-20 bg-cover bg-no-repeat">
+            <div style={{backgroundImage:`url(${log})`}} className="  opacity-20 inset-0 bg-cover bg-no-repeat">
             <div className="relative p-16 flex flex-col items-center justify-center">
                 <h1 className="text-red-600 mb-3 font-bold text-6xl">LOGIN NOW</h1>
                 <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-                    <form className="card-body" onSubmit={handleLogin}>
+                    <form className="card-body dark:bg-gray-900" onSubmit={handleLogin}>
                     <ToastContainer />
                         <div className="form-control">
                             <label className="label">

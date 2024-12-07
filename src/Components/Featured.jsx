@@ -15,7 +15,7 @@ const Featured = () => {
             <p></p>
             </div>
 
-            <div className="grid grid-cols-3 gap-3 w-[70%] mx-auto">
+            <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-3 w-[70%] mx-auto">
                 {movies.map(movie=>
                     <div
                     key={movie._id}

@@ -5,7 +5,26 @@ import { Circles } from "react-loader-spinner";
 const AllMovies = () => {
   const [allDatas, setDatas] = useState([]);
   const [loading, setLoading] = useState(false); // Add loading state
-
+  const [search, setSearch] = useState(""); // Search state
+ 
+ 
+  const fetchMovies = async (query = "") => {
+    setLoading(true);
+    try {
+      const response = await fetch(
+        `http://localhost:4000/addMovies?title=${query}`
+      );
+      const data = await response.json();
+      setDatas(data);
+    } catch (error) {
+      console.error("Error fetching movies:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  const handleSearch=()=>{
+    fetchMovies(search)
+ }
   useEffect(() => {
     const fetchData = async () => {
    
@@ -55,6 +74,19 @@ const AllMovies = () => {
     <div>
       <div className="flex flex-col px-20 text-center justify-between items-center">
         <h1 className="text-5xl my-3 text-red-500 font-bold">All Movies</h1>
+        <input
+          type="text"
+          placeholder="Search by title"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)} // Bind input state to `search`
+          className="border dark:bg-gray-900 text-gray-900 dark:text-gray-200  border-gray-300 rounded-md px-4 py-2 mb-6 w-full max-w-md"
+        />
+        <button
+          onClick={handleSearch}
+          className="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300"
+        >
+          Submit
+        </button>
         <p className="my-3 text-lg font-semibold">
           Browse through a diverse collection of movies across genres like
           action, comedy, romance, sci-fi, and more. Each movie features
@@ -63,7 +95,7 @@ const AllMovies = () => {
         </p>
       </div>
       <div>
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
           {allDatas.map((data) => (
             <div
               key={data._id}
