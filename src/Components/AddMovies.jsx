@@ -2,6 +2,8 @@ import { useNavigate } from "react-router-dom";
 import add from "../assets/add2.jpg"
 import { Rating } from 'react-simple-star-rating'
 import { useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AddMovies = () => {
     const navigate=useNavigate();
@@ -43,7 +45,11 @@ const AddMovies = () => {
     .then(data=>{
         console.log(data)
         if(data.insertedId){
-            alert("Movie added successfully")
+            // alert("Movie added successfully")
+            toast.success('Movie Added successfully',{
+                position:'top-center',
+                
+            })
             form.reset();
             setRating(0)
         }
@@ -53,6 +59,7 @@ const AddMovies = () => {
         <div style={{ backgroundImage: `url(${add})` }} className="shrink-0 shadow-2xl bg-no-repeat bg-cover p-16 mx-auto">
             <form className="mx-auto flex flex-col justify-between border-2  items-center"  onSubmit={handleAddMovies}>
                 <h1 className="text-5xl font-semibold">Add Movie</h1>
+                <ToastContainer />
                 <div className="w-1/2 p-8">
                 <div className="form-control ">
                     <label className="label text-white">

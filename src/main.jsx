@@ -16,9 +16,11 @@ import AllMovies from './Components/AllMovies.jsx';
 import Details from './Components/Details.jsx';
 import MyFavourite from './Components/MyFavourite.jsx';
 import { ThemeProvider } from './Components/ThemeProvider.jsx';
+import Error from './Components/Error.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
+    errorElement:<Error></Error>,
     element: <ThemeProvider><Root></Root></ThemeProvider>,
     children:[{
       path:'/',

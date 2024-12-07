@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { Link } from "react-router-dom";
 
@@ -5,12 +6,35 @@ import { Link } from "react-router-dom";
 const AllMovies = () => {
     const datas=useLoaderData();
 console.log(datas)
+const [searchText, setSearchText] = useState('');
+const [filteredMovies, setFilteredMovies] = useState([]);
+
+const handleSearch = async () => {
+    const response = await fetch(`http://localhost:4000/addMovies/search?text=${searchText}`);
+    const data = await response.json();
+    setFilteredMovies(data); // Update state with fetched data
+};
+
     return (
         <div >
             <div className="flex flex-col px-20 text-center justify-between items-center">
                 <h1 className="text-5xl my-3 text-red-500 font-bold">All Movies</h1>
                 <p className="my-3 text-lg font-semibold">Browse through a diverse collection of movies across genres like action, comedy, romance, sci-fi, and more. Each movie features detailed information including posters, genres, ratings, and descriptions to help you make informed choices.</p>
             </div>
+            <input
+                    type="text"
+                    name="searchText"
+                    value={searchText}
+                    onChange={(e) => setSearchText(e.target.value)}
+                    placeholder="Search movies..."
+                    className="bg-black text-white px-4 py-2 rounded-l-lg focus:outline-none"
+                />
+                 <button
+                    onClick={handleSearch}
+                    className="bg-red-600 text-white px-4 py-2 rounded-r-lg hover:bg-red-700 transition duration-300"
+                >
+                    Search
+                </button>
             <div className="grid grid-cols-3 gap-3"  >
 
             {datas.map((data) => (

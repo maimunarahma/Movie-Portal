@@ -4,6 +4,8 @@ import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
 import { AuthContext } from "../Providers/Authentication";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Details = () => {
     const data=useLoaderData();
@@ -58,7 +60,10 @@ const Details = () => {
         _id: data._id, // Movie ID
         title: data.title,
         poster: data.poster,
-        overview: data.overview,
+        genre:data.genre,
+        duration:data.duration,
+        released:data.released,
+        rating:data.rating
       };
     
       fetch(`http://localhost:4000/favourites/${email}`, {
@@ -89,7 +94,7 @@ const Details = () => {
           className="w-[300px] h-[400px] md:w-[350px] md:h-[500px] object-cover rounded-xl"
         />
       </div>
-
+      <ToastContainer />
       {/* Movie Details */}
       <div className="flex flex-col md:ml-8 mt-4 md:mt-0 text-white space-y-4 flex-grow">
         <h1 className="text-4xl font-extrabold text-yellow-400">{data.title}</h1>
