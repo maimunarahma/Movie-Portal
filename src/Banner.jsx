@@ -18,7 +18,7 @@ const Banner = () => {
 </div>
 </div>
 <div>
-    <div><h1>CHOOSE DATE</h1></div>
+  
     <div></div>
 </div>
 <Featured></Featured>

@@ -1,10 +1,10 @@
-import { useContext, useState } from "react";
+import { useContext} from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
 import { AuthContext } from "../Providers/Authentication";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Details = () => {
@@ -118,6 +118,12 @@ const Details = () => {
           >
             Delete
           </button>
+          <Link to={`/update/${data._id}`}>
+          <button className="px-6 py-2 bg-red-600 hover:bg-red-800 text-white font-semibold rounded-full shadow-md transition-colors duration-300" >
+           Update
+          </button>
+          </Link>
+         
         </div>
       </div>
     </div>

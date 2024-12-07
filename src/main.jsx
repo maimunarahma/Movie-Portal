@@ -17,6 +17,7 @@ import Details from './Components/Details.jsx';
 import MyFavourite from './Components/MyFavourite.jsx';
 import { ThemeProvider } from './Components/ThemeProvider.jsx';
 import Error from './Components/Error.jsx';
+import Update from './Components/Update.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -40,7 +41,7 @@ const router = createBrowserRouter([
     },{
       path:'/allMovies',
       element:<AllMovies></AllMovies>,
-      loader:()=>fetch('http://localhost:4000/addMovies')
+      // loader:()=>fetch('http://localhost:4000/addMovies')
     },{
       path:'/details/:id',
       element:<Details></Details>,
@@ -50,7 +51,12 @@ const router = createBrowserRouter([
     path:'/favourites/:email',
     element: <MyFavourite></MyFavourite>,
     loader:({params})=> fetch(`http://localhost:4000/favourites/${params.email}`)
-  },
+  },{
+    path:'/update/:id',
+    element:<Update></Update>,
+    loader:({params})=> fetch(`http://localhost:4000/update/${params.id}`)
+
+  }
    
   ]
   }

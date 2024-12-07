@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { useLoaderData } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Celebraties from "./Celebraties";
