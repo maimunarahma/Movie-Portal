@@ -22,9 +22,15 @@ const handleLogin = async (e) => {
     try {
         const res = await login(email, pass);
         setUser(res.user);
+        toast.success("Logged in Successful! 🎉", {
+            position: "top-center",
+          });
         navigate('/');
         console.log(user)
     } catch (err) {
+        toast.error("Logged in failed", {
+            position: "top-center",
+          });
         console.log(err);
     }}
     const provider = new GoogleAuthProvider();
