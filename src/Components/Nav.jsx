@@ -21,17 +21,18 @@ const Nav = () => {
     return (
         <div className="mx-auto  p-5">
             <div className="flex items-center">
-            <div className="navbar-start w-[40%]">
+            <div className="navbar-start w-[20%]">
            <h1 className="flex justify-start items-center gap-1 font-semibold text-xl"><BiCameraMovie /><span className="text-red-600">MULTI</span>PLEX</h1>
            </div>
 
-           <div className="navbar-end w-[50%] hidden md:block ">
+           <div className="navbar-end w-[75%] hidden md:block ">
            <ul className="flex justify-between items-center font-semibold ">
            
             <Link to='/'> <li>HOME</li></Link>
             <Link to='/allMovies'>   <li>ALL MOVIES</li></Link>
          
-            <li>UPCOMING</li>
+            <Link to='/upcoming'><li>UPCOMING</li></Link>
+            
            
             <button onClick={toggleTheme}
         className="p-2 rounded-full bg-gray-300 dark:bg-gray-700 hover:bg-gray-400 dark:hover:bg-gray-600 transition"
@@ -63,7 +64,7 @@ const Nav = () => {
          
       </div>
       <div className="dropdown">
-      <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+      <div tabIndex={0} role="button" className="btn btn-ghost block md:hidden">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-5 w-5"
@@ -84,8 +85,8 @@ const Nav = () => {
       
       <Link to='/'> <li>HOME</li></Link>
             <Link to='/allMovies'>   <li>ALL MOVIES</li></Link>
-         
-            <li>UPCOMING</li>
+         <Link to='/upcoming'><li>UPCOMING</li></Link>
+            
            
           <li>
           <button onClick={toggleTheme}

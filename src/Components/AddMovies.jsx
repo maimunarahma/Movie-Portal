@@ -56,11 +56,11 @@ const AddMovies = () => {
     })}
     }
     return (
-        <div style={{ backgroundImage: `url(${add})` }} className="shrink-0 shadow-2xl bg-no-repeat bg-cover p-16 mx-auto">
-            <form className="mx-auto flex flex-col justify-between border-2  items-center"  onSubmit={handleAddMovies}>
+        <div style={{ backgroundImage: `url(${add})` }} className="shrink-0 shadow-2xl bg-no-repeat bg-cover lg:p-16 mx-auto">
+            <form className="mx-auto flex flex-col justify-between items-center"  onSubmit={handleAddMovies}>
                 <h1 className="text-5xl font-semibold">Add Movie</h1>
                 <ToastContainer />
-                <div className="w-1/2 p-8">
+                <div className="w-1/2 md:p-8">
                 <div className="form-control ">
                     <label className="label text-white">
                         <span className="label-text text-white font-bold">Movie Poster</span>

@@ -1,101 +1,83 @@
+import { useContext, useState, useEffect } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { AuthContext } from "../Providers/Authentication";
 
 const MyFavourite = () => {
-  const favourites = useLoaderData();
-  const navigate=useNavigate();
- console.log(favourites)
-  const handleDelete = (id) => {
-    
-        console.log(id);
-        
- Swal.fire(
-    {
-  title: "Are you sure?",
-  text: "You won't be able to revert this!",
-  icon: "warning",
-  showCancelButton: true,
-  confirmButtonColor: "#3085d6",
-  cancelButtonColor: "#d33",
-  confirmButtonText: "Yes, delete it!"
-})
+  const favouriteMovies = useLoaderData(); // List of movies
+  const [favourites, setFavourites] = useState(favouriteMovies);
+  const { user } = useContext(AuthContext);
 
-.then((result) => {
-  if (result.isConfirmed) {
-        fetch(`http://localhost:4000/details/${id}`,{
-            method:'DELETE'
-        })
-     .then(res=> res.json())
-     .then(data=>{
-        console.log(data)
-        if(data.deletedCount>0){
-          
-
-
+  // Handle deletion of favourite movie
+  const handleDelete = async (id) => {
     Swal.fire({
-      title: "Deleted!",
-      text: "Your file has been deleted.",
-      icon: "success"
-    });
-    navigate('/allMovies');
-  }
-});
-       
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+   
+          const response = await fetch(
+            `http://localhost:4000/favourites/${user.email}/${id}`,
+            { method: "DELETE" }
+          );
+          const data = await response.json();
 
+          if (data.deletedCount>0) {
+            Swal.fire("Deleted!", "Movie removed from favourites.", "success");
+
+            // Update state after successful deletion
+            setFavourites((prev) => prev.filter((movie) => movie._id !== id));
+          } else {
+            Swal.fire("Error!", "Failed to remove movie from favourites.", "error");
+          }
         }
-     })
-    }
-
-  
+    });
+  };
 
   return (
-    <div className="grid grid-cols-3">
-      {favourites.map((fvrt) => (
-        <div 
-          key={fvrt._id} 
-          className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 border border-gray-200 dark:border-gray-700 flex flex-col md:flex-row gap-4 mb-4"
-        >
-          <img 
-            src={fvrt.poster} 
-            alt={fvrt.title} 
-            className="w-full md:w-1/3 h-auto rounded-lg object-cover"
-          />
-          <div className="flex flex-col justify-between w-full md:w-2/3">
-            <div className="mb-4">
+    <div className="grid grid-cols-3 gap-4">
+      {favourites.length ? (
+        favourites.map((movie) => (
+          <div
+            key={movie._id}
+            className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 border border-gray-200 dark:border-gray-700"
+          >
+            <img
+              src={movie.poster}
+              alt={movie.title}
+              className="w-full h-48 object-cover rounded-lg"
+            />
+            <div className="mt-2">
               <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
-                {fvrt.title}
+                {movie.title}
               </h2>
-              <div className="text-sm text-gray-600 dark:text-gray-400">
-                <p>
-                  Genre: <span className="font-medium">{fvrt.genre}</span>
-                </p>
-                <p>
-                  Duration: <span className="font-medium"> {fvrt.duration} </span>
-                </p>
-                <p>
-                  Released: <span className="font-medium">{fvrt.released}</span>
-                </p>
-              </div>
+              <p className="text-sm text-gray-600 dark:text-gray-400">Genre: {movie.genre}</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                Duration: {movie.duration}
+              </p>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                Released: {movie.released}
+              </p>
             </div>
-            <div className="flex items-center justify-between">
-              <div>
-                <span className="text-sm font-medium text-gray-800 dark:text-gray-300">
-                  Rating:
-                </span>
-                <span className="ml-2 text-lg font-semibold text-yellow-500">
-                  {fvrt.rating}
-                </span>
-              </div>
+            <div className="mt-2 flex justify-between items-center">
+              <span className="text-yellow-500 text-lg">Rating: {movie.rating}</span>
               <button
-                className="px-4 py-2 bg-red-600 text-white rounded-lg shadow hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400"
-                onClick={() => handleDelete(fvrt._id)}
+                className="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700"
+                onClick={() => handleDelete(movie._id)}
               >
                 Delete
               </button>
             </div>
           </div>
-        </div>
-      ))}
+        ))
+      ) : (
+        <div>No movies found in favourites!</div>
+      )}
     </div>
   );
 };

@@ -18,6 +18,7 @@ import MyFavourite from './Components/MyFavourite.jsx';
 import { ThemeProvider } from './Components/ThemeProvider.jsx';
 import Error from './Components/Error.jsx';
 import Update from './Components/Update.jsx';
+import UpcomingMovies from './Components/UpcomingMovies.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -56,6 +57,9 @@ const router = createBrowserRouter([
     element:<Private><Update></Update></Private>,
     loader:({params})=> fetch(`http://localhost:4000/update/${params.id}`)
 
+  },{
+    path:'/upcoming',
+    element:<UpcomingMovies></UpcomingMovies>
   }
    
   ]
