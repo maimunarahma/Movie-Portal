@@ -125,6 +125,11 @@ const Details = () => {
           </Link>
          
         </div>
+        <hr className="w-[70%] mx-auto my-5"/>
+            <div className="w-[70%] mx-auto flex justify-end my-3">
+            <Link to='/allMovies'><button className="btn bg-red-600 text-white">ALL MOVIES</button></Link>
+          
+            </div>
       </div>
     </div>
     );
