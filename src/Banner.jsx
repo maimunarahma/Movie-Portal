@@ -3,6 +3,7 @@ import poster from "./assets/poster.jpg";
 import Featured from "./Components/Featured";
 import queen from "../src/assets/the-queens-gambit.webp";
 import wednesday from "../src/assets/images (5).jpeg";
+import Accordion from "./Accordion";
 
 const Banner = () => {
   return (
@@ -65,6 +66,7 @@ const Banner = () => {
 
       {/* Featured Section */}
       <Featured />
+      <Accordion></Accordion>
     </div>
   );
 };

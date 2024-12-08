@@ -27,7 +27,7 @@ const router = createBrowserRouter([
     children:[{
       path:'/',
       element:<Banner></Banner>,
-      loader:()=>fetch('http://localhost:4000/featured')
+      loader:()=>fetch('https://multiplex-blue.vercel.app/featured')
     },{
       path:'/login',
       element:<Login></Login>
@@ -46,16 +46,16 @@ const router = createBrowserRouter([
     },{
       path:'/details/:id',
       element:<Details></Details>,
-      loader:({params})=>fetch(`http://localhost:4000/details/${params.id}`)
+      loader:({params})=>fetch(`https://multiplex-blue.vercel.app/details/${params.id}`)
     },
   {
     path:'/favourites/:email',
     element: <MyFavourite></MyFavourite>,
-    loader:({params})=> fetch(`http://localhost:4000/favourites/${params.email}`)
+    loader:({params})=> fetch(`https://multiplex-blue.vercel.app/favourites/${params.email}`)
   },{
     path:'/update/:id',
     element:<Private><Update></Update></Private>,
-    loader:({params})=> fetch(`http://localhost:4000/update/${params.id}`)
+    loader:({params})=> fetch(`https://multiplex-blue.vercel.app/update/${params.id}`)
 
   },{
     path:'/upcoming',

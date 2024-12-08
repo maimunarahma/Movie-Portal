@@ -12,7 +12,7 @@ const AllMovies = () => {
     setLoading(true);
     try {
       const response = await fetch(
-        `http://localhost:4000/addMovies?title=${query}`
+        `https://multiplex-blue.vercel.app/addMovies?title=${query}`
       );
       const data = await response.json();
       setDatas(data);
@@ -28,7 +28,7 @@ const AllMovies = () => {
   useEffect(() => {
     const fetchData = async () => {
    
-        const response = await fetch("http://localhost:4000/addMovies");
+        const response = await fetch("https://multiplex-blue.vercel.app/addMovies");
       
         const data = await response.json();
         setDatas(data);

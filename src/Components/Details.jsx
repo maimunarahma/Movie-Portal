@@ -31,7 +31,7 @@ const Details = () => {
 
 .then((result) => {
   if (result.isConfirmed) {
-        fetch(`http://localhost:4000/details/${id}`,{
+        fetch(`https://multiplex-blue.vercel.app/details/${id}`,{
             method:'DELETE'
         })
      .then(res=> res.json())
@@ -66,7 +66,7 @@ const Details = () => {
         rating:data.rating
       };
     
-      fetch(`http://localhost:4000/favourites/${email}`, {
+      fetch(`https://multiplex-blue.vercel.app/favourites/${email}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

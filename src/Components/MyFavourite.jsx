@@ -22,7 +22,7 @@ const MyFavourite = () => {
       if (result.isConfirmed) {
    
           const response = await fetch(
-            `http://localhost:4000/favourites/${user.email}/${id}`,
+            `https://multiplex-blue.vercel.app/favourites/${user.email}/${id}`,
             { method: "DELETE" }
           );
           const data = await response.json();

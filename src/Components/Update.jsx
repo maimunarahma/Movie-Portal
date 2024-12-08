@@ -24,7 +24,7 @@ const Update = () => {
     const onSubmit = (formData) => {
         console.log(formData);
 
-        fetch(`http://localhost:4000/update/${data._id}`, {
+        fetch(`https://multiplex-blue.vercel.app/update/${data._id}`, {
             method: "PUT",
             headers: {
                 "content-type": "application/json",
