@@ -6,7 +6,7 @@ import Celebraties from "./Celebraties";
 const Featured = () => {
  
     const movies=useLoaderData()
-    console.log(movies)
+    // console.log(movies)
  
     return (
         <div>

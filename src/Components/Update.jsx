@@ -13,16 +13,16 @@ const Update = () => {
         formState: { errors },
     } = useForm({
         defaultValues: {
-            name: data?.title || "",
+            title: data?.title || "",
             overview: data?.overview || "",
             rating: data?.rating || "",
-            genre: data?.genre || "",
+            poster: data?.poster || "",
         },
     });
 
     // Handle form submission
     const onSubmit = (formData) => {
-        console.log(formData);
+        // console.log(formData);
 
         fetch(`https://multiplex-blue.vercel.app/update/${data._id}`, {
             method: "PUT",
@@ -32,19 +32,15 @@ const Update = () => {
             body: JSON.stringify(formData),
         })
             .then((res) => res.json())
-            .then((result) => {
-                console.log(result);
-                if (result.matchedCount > 0) {
+            .then((data) => {
+                if (data.matchedCount > 0) {
                     Swal.fire("Success!", "Movie updated.", "success");
                     reset();
                 } else {
                     Swal.fire("Error!", "Something went wrong while updating.", "error");
                 }
             })
-            .catch((error) => {
-                console.error("Unexpected error:", error);
-                Swal.fire("Error!", "Unexpected server error.", "error");
-            });
+         
     };
 
     return (
@@ -66,7 +62,7 @@ const Update = () => {
                     )}
 
                     <input
-                        {...register("overview", { required: "Overview is required" })}
+                        {...register("overview", )}
                         type="text"
                         className="dark:bg-gray-900 text-gray-900 dark:text-gray-200 w-1/2 rounded-lg border-2 p-3"
                     />
@@ -78,7 +74,7 @@ const Update = () => {
                 <div className="flex justify-between items-center gap-5 my-3">
                 
                     <input
-                        {...register("rating", { required: "Rating is required" })}
+                        {...register("rating",)}
                         type="text"
                         className="dark:bg-gray-900 text-gray-900 dark:text-gray-200 w-1/2 rounded-lg border-2 p-3"
                     />
@@ -87,7 +83,7 @@ const Update = () => {
                     )}
 
                     <input
-                        {...register("genre", { required: "Genre is required" })}
+                        {...register("genre", )}
                         type="text"
                         className="dark:bg-gray-900 text-gray-900 dark:text-gray-200 w-1/2 rounded-lg border-2 p-3"
                     />

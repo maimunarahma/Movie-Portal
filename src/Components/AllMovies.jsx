@@ -17,7 +17,7 @@ const AllMovies = () => {
       const data = await response.json();
       setDatas(data);
     } catch (error) {
-      console.error("Error fetching movies:", error);
+    //   console.error("Error fetching movies:", error);
     } finally {
       setLoading(false);
     }

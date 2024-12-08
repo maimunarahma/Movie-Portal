@@ -13,7 +13,7 @@ const Nav = () => {
     const {theme, toggleTheme}=useContext(ThemeContext)
     
 
-    console.log(user)
+    // console.log(user)
     const handleSignOut=()=>{
         signOutUser();
 

@@ -39,7 +39,7 @@ const Register = () => {
         toast.error("Something went wrong during registration.");
       }
     } catch (error) {
-      console.error("Error during sign-up or profile update: ", error.message);
+    //   console.error("Error during sign-up or profile update: ", error.message);
       toast.error('Registration failed! Please try again.', { position: "top-center" });
     }
   };

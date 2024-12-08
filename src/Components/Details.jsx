@@ -16,7 +16,7 @@ const Details = () => {
     // const [isDelete,setDelete]=useState(false)
     const navigate=useNavigate();
     const handleDelete=id=>{
-        console.log(id);
+        // console.log(id);
         
  Swal.fire(
     {
@@ -36,7 +36,7 @@ const Details = () => {
         })
      .then(res=> res.json())
      .then(data=>{
-        console.log(data)
+        // console.log(data)
         if(data.deletedCount>0){
           
 

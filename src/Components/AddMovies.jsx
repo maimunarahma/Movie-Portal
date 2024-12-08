@@ -23,7 +23,7 @@ const AddMovies = () => {
        const duration=form.duration.value;
        const released=  form.released.value;
        const overview=form.overview.value;
-      console.log(overview)
+    //   console.log(overview)
        const movie={poster,title,genre,duration,rating,overview, released};
        if(title.length<2 || duration<60){
         alert("Invalid title")
@@ -33,7 +33,7 @@ const AddMovies = () => {
        }
        else{
        
-        console.log(movie);
+        // console.log(movie);
     fetch('https://multiplex-blue.vercel.app/addMovies',{
         method:'POST',
         headers:{
@@ -43,7 +43,7 @@ const AddMovies = () => {
     })
     .then(res=> res.json())
     .then(data=>{
-        console.log(data)
+        // console.log(data)
         if(data.insertedId){
             // alert("Movie added successfully")
             toast.success('Movie Added successfully',{

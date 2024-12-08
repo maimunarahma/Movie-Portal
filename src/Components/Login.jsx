@@ -18,7 +18,7 @@ const handleLogin = async (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const pass = e.target.password.value;
-    console.log(email, pass);
+    // console.log(email, pass);
     try {
         const res = await login(email, pass);
         setUser(res.user);
@@ -26,25 +26,25 @@ const handleLogin = async (e) => {
             position: "top-center",
           });
         navigate('/');
-        console.log(user)
+        // console.log(user)
     } catch (err) {
         toast.error("Logged in failed", {
             position: "top-center",
           });
-        console.log(err);
+        // console.log(err);
     }}
     const provider = new GoogleAuthProvider();
     const handleGoogleSignUp = () => {
       signInWithPopup(auth, provider)
         .then((result) => {
-          console.log("Google Sign-In Success:", result.user);
+        //   console.log("Google Sign-In Success:", result.user);
           toast.success("Logged in with Google! 🎉", {
             position: "top-center",
           });
           navigate("/");
         })
         .catch((error) => {
-          console.error("Google Sign-In Error:", error);
+        //   console.error("Google Sign-In Error:", error);
           toast.error("Google login failed! ", {
             position: "top-center",
           });

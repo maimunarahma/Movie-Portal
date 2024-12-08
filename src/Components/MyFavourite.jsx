@@ -5,40 +5,44 @@ import { AuthContext } from "../Providers/Authentication";
 
 const MyFavourite = () => {
   const favouriteMovies = useLoaderData(); // List of movies
+//   console.log(favouriteMovies)
   const [favourites, setFavourites] = useState(favouriteMovies);
   const { user } = useContext(AuthContext);
 
-  // Handle deletion of favourite movie
-  const handleDelete = async (id) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then(async (result) => {
-      if (result.isConfirmed) {
-   
-          const response = await fetch(
-            `https://multiplex-blue.vercel.app/favourites/${user.email}/${id}`,
-            { method: "DELETE" }
-          );
-          const data = await response.json();
-
-          if (data.deletedCount>0) {
-            Swal.fire("Deleted!", "Movie removed from favourites.", "success");
-
-            // Update state after successful deletion
-            setFavourites((prev) => prev.filter((movie) => movie._id !== id));
-          } else {
-            Swal.fire("Error!", "Failed to remove movie from favourites.", "error");
-          }
-        }
-    });
-  };
-
+  // H
+          const handleDelete = (id) => {
+            Swal.fire({
+              title: "Are you sure?",
+              text: "You won't be able to revert this!",
+              icon: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#3085d6",
+              cancelButtonColor: "#d33",
+              confirmButtonText: "Yes, delete it!",
+            }).then((result) => {
+              if (result.isConfirmed) {
+                fetch(`https://multiplex-blue.vercel.app/favourites/${user.email}/${id}`, {
+                  method: "DELETE",
+                })
+                  .then((res) => {
+            //    console.log(favourites)
+                    return res.json();
+                  })
+                  .then((data) => {
+                    // console.log(data)
+                    if (data.deletedCount > 0) {
+                        // console.log(data)
+                      Swal.fire("Deleted!", "Movie removed from favourites.", "success");
+                      setFavourites((prev) => prev.filter((movie) => movie._id !== id));
+                    } 
+                  })
+                  .catch((error) => {
+                    // console.error("Error:", error);
+                    Swal.fire("Error!", "An unexpected error occurred.", "error");
+                  });
+              }
+            });
+          };
   return (
     <div className="grid grid-cols-3 gap-4">
       {favourites.length ? (
