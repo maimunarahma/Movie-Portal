@@ -55,7 +55,11 @@ const router = createBrowserRouter([
   },{
     path:'/update/:id',
     element:<Private><Update></Update></Private>,
-    loader:({params})=> fetch(`https://multiplex-blue.vercel.app/update/${params.id}`)
+    loader: async ({ params }) => {
+      const res = await fetch(`http://localhost:4000/update/${params.id}`);
+      if (!res.ok) throw new Error('Failed to fetch movie data');
+      return res.json();
+    }    
 
   },{
     path:'/upcoming',

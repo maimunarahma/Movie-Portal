@@ -1,98 +1,142 @@
-
-import { useForm } from "react-hook-form";
+import { useState } from "react";
 import Swal from "sweetalert2";
 import { useLoaderData } from "react-router-dom";
 
 const Update = () => {
     const data = useLoaderData();
+    console.log(data);
 
-    const {
-        register,
-        handleSubmit,
-        reset,
-        formState: { errors },
-    } = useForm({
-        defaultValues: {
-            title: data?.title || "",
-            overview: data?.overview || "",
-            rating: data?.rating || "",
-            poster: data?.poster || "",
-        },
+    // State for form fields
+    const [formData, setFormData] = useState({
+        title: data?.title || "",
+        overview: data?.overview || "",
+        rating: data?.rating || "",
+        poster: data?.poster || "",
+        genre: data?.genre || "",
     });
 
-    // Handle form submission
-    const onSubmit = (formData) => {
-        // console.log(formData);
+    // Handle form field changes
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
+    };
 
-        fetch(`https://multiplex-blue.vercel.app/update/${data._id}`, {
-            method: "PUT",
+    // Submit handler
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        fetch(`http://localhost:4000/update/${data._id}`, {
+            method: "PATCH",
             headers: {
-                "content-type": "application/json",
+                "Content-Type": "application/json",
             },
             body: JSON.stringify(formData),
         })
             .then((res) => res.json())
-            .then((data) => {
-                if (data.matchedCount > 0) {
+            .then((response) => {
+                if (response.matchedCount > 0) {
                     Swal.fire("Success!", "Movie updated.", "success");
-                    reset();
                 } else {
                     Swal.fire("Error!", "Something went wrong while updating.", "error");
                 }
             })
-         
+            .catch((error) => {
+                console.error("Error during update:", error);
+                Swal.fire("Error!", "Failed to update the movie.", "error");
+            });
     };
 
     return (
-        <div>
-            <h1 className="text-center font-bold text-5xl my-5">Update Movie</h1>
+        <div className="min-h-screen bg-gray-100 dark:bg-gray-800 p-5">
+            <h1 className="text-center font-bold text-3xl my-5 text-gray-900 dark:text-gray-200">
+                Update Movie
+            </h1>
             <form
-                onSubmit={handleSubmit(onSubmit)}
-                className="w-[60%] mx-auto p-5"
+                onSubmit={handleSubmit}
+                className="max-w-3xl mx-auto bg-white dark:bg-gray-900 p-8 rounded-lg shadow-lg"
             >
-                <div className="flex justify-between items-center gap-5">
-
+                {/* Movie Name */}
+                <div className="mb-4">
+                    <label className="label">
+                        <span className="label-text text-gray-700 dark:text-gray-300">
+                            Movie Name
+                        </span>
+                    </label>
                     <input
-                        {...register("name", { required: "Title is required" })}
+                        name="title"
+                        value={formData.title}
+                        onChange={handleChange}
                         type="text"
-                        className="dark:bg-gray-900 text-gray-900 dark:text-gray-200 w-1/2 rounded-lg border-2 p-3"
+                        className="w-full p-3 border rounded-lg dark:bg-gray-800 dark:text-gray-200"
+                        placeholder="Enter movie title"
+                        required
                     />
-                    {errors.name && (
-                        <p className="text-red-500">{errors.name.message}</p>
-                    )}
-
-                    <input
-                        {...register("overview", )}
-                        type="text"
-                        className="dark:bg-gray-900 text-gray-900 dark:text-gray-200 w-1/2 rounded-lg border-2 p-3"
-                    />
-                    {errors.overview && (
-                        <p className="text-red-500">{errors.overview.message}</p>
-                    )}
                 </div>
 
-                <div className="flex justify-between items-center gap-5 my-3">
-                
-                    <input
-                        {...register("rating",)}
-                        type="text"
-                        className="dark:bg-gray-900 text-gray-900 dark:text-gray-200 w-1/2 rounded-lg border-2 p-3"
+                {/* Overview */}
+                <div className="mb-4">
+                    <label className="label">
+                        <span className="label-text text-gray-700 dark:text-gray-300">
+                            Overview
+                        </span>
+                    </label>
+                    <textarea
+                        name="overview"
+                        value={formData.overview}
+                        onChange={handleChange}
+                        className="w-full p-3 border rounded-lg dark:bg-gray-800 dark:text-gray-200"
+                        placeholder="Enter movie overview"
+                        rows="4"
                     />
-                    {errors.rating && (
-                        <p className="text-red-500">{errors.rating.message}</p>
-                    )}
-
-                    <input
-                        {...register("genre", )}
-                        type="text"
-                        className="dark:bg-gray-900 text-gray-900 dark:text-gray-200 w-1/2 rounded-lg border-2 p-3"
-                    />
-                    {errors.genre && (
-                        <p className="text-red-500">{errors.genre.message}</p>
-                    )}
                 </div>
 
-                <button className="w-full btn bg-red-600">Submit</button>
+                {/* Rating */}
+                <div className="mb-4">
+                    <label className="label">
+                        <span className="label-text text-gray-700 dark:text-gray-300">
+                            Rating
+                        </span>
+                    </label>
+                    <input
+                        name="rating"
+                        value={formData.rating}
+                        onChange={handleChange}
+                        type="number"
+                        step="0.1"
+                        className="w-full p-3 border rounded-lg dark:bg-gray-800 dark:text-gray-200"
+                        placeholder="Enter movie rating"
+                        required
+                    />
+                </div>
+
+                {/* Genre */}
+                <div className="mb-4">
+                    <label className="label">
+                        <span className="label-text text-gray-700 dark:text-gray-300">
+                            Genre
+                        </span>
+                    </label>
+                    <input
+                        name="genre"
+                        value={formData.genre}
+                        onChange={handleChange}
+                        type="text"
+                        className="w-full p-3 border rounded-lg dark:bg-gray-800 dark:text-gray-200"
+                        placeholder="Enter movie genre"
+                        required
+                    />
+                </div>
+
+                {/* Submit Button */}
+                <button
+                    type="submit"
+                    className="w-full p-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+                >
+                    Submit
+                </button>
             </form>
         </div>
     );

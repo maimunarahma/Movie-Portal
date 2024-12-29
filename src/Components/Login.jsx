@@ -22,12 +22,14 @@ const handleLogin = async (e) => {
     try {
         const res = await login(email, pass);
         setUser(res.user);
+        toast.dismiss();
         toast.success("Logged in Successful! 🎉", {
             position: "top-center",
           });
         navigate('/');
         // console.log(user)
     } catch (err) {
+        toast.dismiss();
         toast.error("Logged in failed", {
             position: "top-center",
           });
@@ -38,6 +40,7 @@ const handleLogin = async (e) => {
       signInWithPopup(auth, provider)
         .then((result) => {
         //   console.log("Google Sign-In Success:", result.user);
+        toast.dismiss();
           toast.success("Logged in with Google! 🎉", {
             position: "top-center",
           });
@@ -45,17 +48,18 @@ const handleLogin = async (e) => {
         })
         .catch((error) => {
         //   console.error("Google Sign-In Error:", error);
+        toast.dismiss();
           toast.error("Google login failed! ", {
             position: "top-center",
           });
-          navigate("/");
+        //   navigate("/");
         });
     }
   
  
     return (
         <div >
-            <div style={{backgroundImage:`url(${log})`}} className="  opacity-20 inset-0 bg-cover bg-no-repeat">
+            <div style={{backgroundImage:`url(${log})`}} className="  opacity-50 inset-0 bg-cover bg-no-repeat">
             <div className="relative p-16 flex flex-col items-center justify-center">
                 <h1 className="text-red-600 mb-3 font-bold text-6xl">LOGIN NOW</h1>
                 <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">

@@ -1,4 +1,4 @@
-/** @type {import('tailwindcss').Config} */
+
 export default {
   content: [
     "./index.html",
@@ -6,7 +6,18 @@ export default {
   ],
   darkMode: "class", 
   theme: {
-    extend: {},
+    extend: {
+      keyframes: {
+        comeGo: {
+          '50%, 80%': { transform: 'translateX(-100%)', opacity: '0' },
+          '50%': { transform: 'translateX(0)', opacity: '1' },
+        },
+      },
+      animation: {
+        'come-go': 'comeGo 3s ease-in-out infinite',
+      },
+    
+    },
   },
   plugins: [
     // eslint-disable-next-line no-undef

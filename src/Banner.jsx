@@ -12,12 +12,11 @@ const Banner = () => {
       <div className="relative w-full mx-auto">
         <div className="carousel carousel-center w-full mx-auto">
           {/* Slide 1 */}
-          <div id="slide1" className="carousel-item relative w-full">
-            <img
-              src={banner}
-              className="w-[90%]  rounded-lg mx-auto"
-              alt="Interstellar Poster"
-            />
+          <div id="slide1" className="carousel-item relative w-full bg-[url('https://i.ibb.co.com/tMGFmDN/DALL-E-2024-12-28-23-33-45-A-high-definition-banner-for-a-movie-website-featuring-a-sleek-and-modern.webp')] bg-cover bg-center bg-no-repeat">
+           <div className="w-1/2 p-28 m-16">
+           <h1 className="text-5xl font-bold animate-come-go ">Multiplex</h1>
+           </div>
+           
             <div className="absolute left-5 right-5 top-1/2 transform -translate-y-1/2 flex justify-between">
               <a href="#slide3" className="btn btn-circle text-white">
                 ❮

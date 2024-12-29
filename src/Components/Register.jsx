@@ -46,7 +46,7 @@ const Register = () => {
 
   return (
     <div>
-      <div style={{ backgroundImage: `url(${log})` }} className="absolute inset-0 opacity-20 bg-cover bg-no-repeat"></div>
+      <div style={{ backgroundImage: `url(${log})` }} className="absolute inset-0 opacity-40 bg-cover bg-no-repeat"></div>
       <div className="relative p-16 flex flex-col items-center justify-center">
         <h1 className="text-red-600 mb-3 font-bold text-6xl">Register NOW</h1>
         <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
