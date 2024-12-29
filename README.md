@@ -5,7 +5,7 @@ Welcome to the **Movie Portal**! This web application allows users to browse, ma
 ---
 
 ## 🚀 Live Website  
-[Visit the Movie Portal](#) *(Replace `#` with your live site link)*  
+[https://movie-portal-159c3.web.app](https://movie-portal-159c3.web.app)](#) *(Replace `#` with your live site link)*  
 
 ---
 
