@@ -5,7 +5,7 @@ Welcome to the **Movie Portal**! This web application allows users to browse, ma
 ---
 
 ## 🚀 Live Website  
-[https://movie-portal-159c3.web.app](https://movie-portal-159c3.web.app)](#) *(Replace `#` with your live site link)*  
+[https://movie-portal-159c3.web.app](https://movie-portal-159c3.web.app)
 
 ---
 
@@ -41,6 +41,26 @@ Welcome to the **Movie Portal**! This web application allows users to browse, ma
 
 ---
 
+## 📚 Dependencies Used  
+
+### Frontend Dependencies  
+- React.js  
+- React Router DOM  
+- Tailwind CSS  
+- Axios  
+- React Icons  
+
+### Backend Dependencies  
+- Express.js  
+- Mongoose  
+- JSON Web Token (JWT)  
+- dotenv  
+- cors  
+- bcrypt.js  
+- nodemon (for development)  
+
+---
+
 ## 📚 Setup Instructions  
 
 ### Prerequisites  
@@ -49,7 +69,39 @@ Welcome to the **Movie Portal**! This web application allows users to browse, ma
 
 ### Steps to Run Locally  
 
-1. **Clone the Repository**  
-   ```bash
-   git clone https://github.com/maimunarahma/Movie-Portal.git
-   cd Movie-Portal
+#### 1. Clone the Repository  
+```bash
+git clone https://github.com/maimunarahma/Movie-Portal.git
+cd Movie-Portal
+```
+
+#### 2. Setup the Backend  
+```bash
+cd server
+npm install
+```
+- Create a `.env` file and add the following:
+  ```
+  PORT=5000
+  MONGODB_URI=your_mongodb_connection_string
+  JWT_SECRET=your_jwt_secret
+  ```
+- Start the server:
+  ```bash
+  npm start
+  ```
+
+#### 3. Setup the Frontend  
+```bash
+cd ../client
+npm install
+npm start
+```
+
+#### 4. Open the Application  
+- Visit `http://localhost:3000` in your browser.  
+
+---
+
+Enjoy using **Movie Portal**! 🎬📺
+

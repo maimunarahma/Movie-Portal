@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import log from "../assets/login.jpg";
 import { AuthContext } from '../Providers/Authentication';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -76,9 +76,11 @@ const Register = () => {
               </label>
               <input type="text" placeholder="photo URL" name="pic" className="input input-bordered" required />
             </div>
+           
             <div className="form-control mt-6">
               <button className="btn btn-primary">Register</button>
             </div>
+            <h1>Already have an account? <Link to='/login'><span className="text-red-600">Login </span></Link></h1>
           </form>
         </div>
       </div>

@@ -1,15 +1,15 @@
-import { useContext, useState, useEffect } from "react";
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
+import { useLoaderData, useNavigate} from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Providers/Authentication";
 
 const MyFavourite = () => {
   const favouriteMovies = useLoaderData(); // List of movies
-//   console.log(favouriteMovies)
+  console.log(favouriteMovies)
   const [favourites, setFavourites] = useState(favouriteMovies);
   const { user } = useContext(AuthContext);
 
-  // H
+ const navigate=useNavigate();
           const handleDelete = (id) => {
             Swal.fire({
               title: "Are you sure?",
@@ -21,7 +21,7 @@ const MyFavourite = () => {
               confirmButtonText: "Yes, delete it!",
             }).then((result) => {
               if (result.isConfirmed) {
-                fetch(`https://multiplex-blue.vercel.app/favourites/${user.email}/${id}`, {
+                fetch(`https://movie-server-indol.vercel.app/favourites/${user.email}/${id}`, {
                   method: "DELETE",
                 })
                   .then((res) => {
@@ -33,7 +33,9 @@ const MyFavourite = () => {
                     if (data.deletedCount > 0) {
                         // console.log(data)
                       Swal.fire("Deleted!", "Movie removed from favourites.", "success");
+                      // navigate('/allMovies')      // navigate('/myFavourite'); 
                       setFavourites((prev) => prev.filter((movie) => movie._id !== id));
+                     
                     } 
                   })
                   .catch((error) => {
@@ -41,12 +43,13 @@ const MyFavourite = () => {
                     Swal.fire("Error!", "An unexpected error occurred.", "error");
                   });
               }
+              navigate('/allMovies')
             });
           };
   return (
     <div className="grid grid-cols-3 gap-4">
-      {favourites.length ? (
-        favourites.map((movie) => (
+      {favourites.movies.length ? (
+        favourites.movies.map((movie) => (
           <div
             key={movie._id}
             className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 border border-gray-200 dark:border-gray-700"

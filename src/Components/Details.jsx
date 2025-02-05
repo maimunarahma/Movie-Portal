@@ -31,7 +31,7 @@ const Details = () => {
 
 .then((result) => {
   if (result.isConfirmed) {
-        fetch(`https://multiplex-blue.vercel.app/details/${id}`,{
+        fetch(`https://movie-server-indol.vercel.app/details/${id}`,{
             method:'DELETE'
         })
      .then(res=> res.json())
@@ -46,12 +46,13 @@ const Details = () => {
       text: "Your file has been deleted.",
       icon: "success"
     });
-    navigate('/allMovies');
+ 
   }
 });
        
 
         }
+        navigate('/')
      })
     }
 
@@ -66,7 +67,7 @@ const Details = () => {
         rating:data.rating
       };
     
-      fetch(`https://multiplex-blue.vercel.app/favourites/${email}`, {
+      fetch(`https://movie-server-indol.vercel.app/favourites/${email}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -75,13 +76,15 @@ const Details = () => {
       })
         .then((res) => res.json())
         .then((result) => {
-          if (result.modifiedCount > 0 || result.upsertedCount > 0) {
+          console.log(result)
+          if (result.result.modifiedCount > 0 && result.result.matchedCount > 0) {
             Swal.fire('Success!', 'Movie added to favorites.', 'success');
           } else {
             Swal.fire('Error!', 'Movie already in favorites.', 'error');
           }
         })
         .catch((error) => console.error('Error adding favorite:', error));
+       
     };
     
     return (

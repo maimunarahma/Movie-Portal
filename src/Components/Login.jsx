@@ -36,25 +36,32 @@ const handleLogin = async (e) => {
         // console.log(err);
     }}
     const provider = new GoogleAuthProvider();
-    const handleGoogleSignUp = () => {
-      signInWithPopup(auth, provider)
-        .then((result) => {
-        //   console.log("Google Sign-In Success:", result.user);
-        toast.dismiss();
-          toast.success("Logged in with Google! 🎉", {
-            position: "top-center",
-          });
-          navigate("/");
-        })
-        .catch((error) => {
-        //   console.error("Google Sign-In Error:", error);
-        toast.dismiss();
-          toast.error("Google login failed! ", {
-            position: "top-center",
-          });
-        //   navigate("/");
-        });
-    }
+    const handleGoogleSignUp = async () => {
+        try {
+            // Ensure any existing user session is signed out
+            await auth.signOut();
+    
+            // Initiate Google Sign-In
+            const result = await signInWithPopup(auth, provider);
+    
+            // Notify user and navigate
+            toast.dismiss();
+            toast.success("Logged in with Google! 🎉", {
+                position: "top-center",
+            });
+            navigate("/");
+    
+            // Optionally, update the user state if needed
+            setUser(result.user);
+        } catch (error) {
+            // Handle errors
+            toast.dismiss();
+            toast.error("Google login failed! ", {
+                position: "top-center",
+            });
+        }
+    };
+    
   
  
     return (
@@ -85,11 +92,14 @@ const handleLogin = async (e) => {
                             </label>
                         </div>
                         <div className="form-control mt-6">
-                            <button className="btn btn-primary">Login</button>
-                            <h1>Or</h1>
-                            <button onClick={handleGoogleSignUp} className="btn"><FcGoogle /> Login With Google</button>
+                            <button className="btn btn-primary" >Login</button>
+                         
+                       
                         </div>
+                    
                     </form>
+                    <h1>Or</h1>
+                    <button onClick={handleGoogleSignUp} className="btn"><FcGoogle /> Login With Google</button>
                 </div>
             </div>
         </div>

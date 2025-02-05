@@ -8,13 +8,13 @@ const Update = () => {
 
     // State for form fields
     const [formData, setFormData] = useState({
-        title: data?.title || "",
-        overview: data?.overview || "",
-        rating: data?.rating || "",
-        poster: data?.poster || "",
-        genre: data?.genre || "",
+        title: data.title,
+        overview: data.overview,
+        rating: data.rating ,
+        poster: data.poster ,
+        genre: data.genre ,
     });
-
+  console.log(formData)
     // Handle form field changes
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -23,12 +23,12 @@ const Update = () => {
             [name]: value,
         }));
     };
-
+ 
     // Submit handler
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        fetch(`http://localhost:4000/update/${data._id}`, {
+        fetch(`https://movie-server-indol.vercel.app/update/${data._id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
@@ -71,7 +71,7 @@ const Update = () => {
                         onChange={handleChange}
                         type="text"
                         className="w-full p-3 border rounded-lg dark:bg-gray-800 dark:text-gray-200"
-                        placeholder="Enter movie title"
+                       
                         required
                     />
                 </div>
@@ -88,7 +88,7 @@ const Update = () => {
                         value={formData.overview}
                         onChange={handleChange}
                         className="w-full p-3 border rounded-lg dark:bg-gray-800 dark:text-gray-200"
-                        placeholder="Enter movie overview"
+                   
                         rows="4"
                     />
                 </div>
@@ -107,7 +107,7 @@ const Update = () => {
                         type="number"
                         step="0.1"
                         className="w-full p-3 border rounded-lg dark:bg-gray-800 dark:text-gray-200"
-                        placeholder="Enter movie rating"
+                  
                         required
                     />
                 </div>
@@ -125,7 +125,6 @@ const Update = () => {
                         onChange={handleChange}
                         type="text"
                         className="w-full p-3 border rounded-lg dark:bg-gray-800 dark:text-gray-200"
-                        placeholder="Enter movie genre"
                         required
                     />
                 </div>

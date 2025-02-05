@@ -2,6 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import {
+  
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
@@ -19,61 +20,73 @@ import { ThemeProvider } from './Components/ThemeProvider.jsx';
 import Error from './Components/Error.jsx';
 import Update from './Components/Update.jsx';
 import UpcomingMovies from './Components/UpcomingMovies.jsx';
-const router = createBrowserRouter([
-  {
-    path: "/",
-    errorElement:<Error></Error>,
-    element: <ThemeProvider><Root></Root></ThemeProvider>,
-    children:[{
-      path:'/',
-      element:<Banner></Banner>,
-      loader:()=>fetch('https://multiplex-blue.vercel.app/featured')
-    },{
-      path:'/login',
-      element:<Login></Login>
-    },{
-      path:'/register',
-      element:<Register></Register>
 
-    },
+const router = createBrowserRouter(
+  [
     {
-      path:'/addMovies',
-      element:<Private><AddMovies></AddMovies></Private>
-    },{
-      path:'/allMovies',
-      element:<AllMovies></AllMovies>,
-      
-    },{
-      path:'/details/:id',
-      element:<Details></Details>,
-      loader:({params})=>fetch(`https://multiplex-blue.vercel.app/details/${params.id}`)
-    },
-  {
-    path:'/favourites/:email',
-    element: <MyFavourite></MyFavourite>,
-    loader:({params})=> fetch(`https://multiplex-blue.vercel.app/favourites/${params.email}`)
-  },{
-    path:'/update/:id',
-    element:<Private><Update></Update></Private>,
-    loader: async ({ params }) => {
-      const res = await fetch(`http://localhost:4000/update/${params.id}`);
-      if (!res.ok) throw new Error('Failed to fetch movie data');
-      return res.json();
-    }    
+      path: "/",
+      errorElement: <Error />,
+      element: (
+        <ThemeProvider>
+          <Root />
+        </ThemeProvider>
+      ),
+      children: [
+        {
+          path: '/',
+          element: <Banner />,
+          // loader: () => fetch('https://movie-server-b8t3qhy1x-maimuna-myshas-projects.vercel.app/featured'),
+        },
+        {
+          path: '/login',
+          element: <Login />,
+        },
+        {
+          path: '/register',
+          element: <Register />,
+        },
+        {
+          path: '/addMovies',
+          element: <Private><AddMovies /></Private>,
+        },
+        {
+          path: '/allMovies',
+          element: <AllMovies />,
+        },
+        {
+          path: '/details/:id',
+          element: <Details />,
+          loader: ({ params }) =>
+            fetch(`https://movie-server-indol.vercel.app/details/${params.id}`),
+        },
+        {
+          path: '/favourites/:email',
+          element: <MyFavourite />,
+          loader: ({ params }) => fetch(`https://movie-server-indol.vercel.app/favourites/${params.email}`),
+        },
+        {
+          path: '/update/:id',
+          element: <Private><Update /></Private>,
+          loader:  ({ params }) => fetch(`https://movie-server-indol.vercel.app/details/${params.id}`) 
+            
+          
+        },
+        {
+          path: '/upcoming',
+          element: <UpcomingMovies />,
+        },
+      ],
+    }
+  ],
+);
 
-  },{
-    path:'/upcoming',
-    element:<UpcomingMovies></UpcomingMovies>
-  }
-   
-  ]
-  }
-]);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Authentication>
-      <RouterProvider router={router} />
+      <RouterProvider router={router}  
+ 
+  />
       </Authentication>
   </StrictMode>,
 )

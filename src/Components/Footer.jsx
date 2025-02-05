@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 const Footer = () => {
     return (
-      <footer className="bg-gray-900 text-white py-10 mt-20">
+      <footer className="bg-gray-900 text-white py-10 mt-96">
         <div className="container mx-auto px-6 lg:px-20">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Branding Section */}

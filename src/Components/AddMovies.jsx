@@ -34,7 +34,7 @@ const AddMovies = () => {
        else{
        
         // console.log(movie);
-    fetch('https://multiplex-blue.vercel.app/addMovies',{
+    fetch('https://movie-server-indol.vercel.app/addMovies',{
         method:'POST',
         headers:{
             "content-type":"application/json"

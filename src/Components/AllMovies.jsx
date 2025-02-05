@@ -12,10 +12,11 @@ const AllMovies = () => {
     setLoading(true);
     try {
       const response = await fetch(
-        `https://multiplex-blue.vercel.app/addMovies?title=${query}`
+        `https://movie-server-indol.vercel.app/addMovies?title=${query}`
       );
       const data = await response.json();
       setDatas(data);
+      console.log(data)
     } catch (error) {
     //   console.error("Error fetching movies:", error);
     } finally {
@@ -28,16 +29,13 @@ const AllMovies = () => {
   useEffect(() => {
     const fetchData = async () => {
    
-        const response = await fetch("https://multiplex-blue.vercel.app/addMovies");
+        const response = await fetch("https://movie-server-indol.vercel.app/addMovies");
       
         const data = await response.json();
         setDatas(data);
      
-        setLoading(true); // Stop loading regardless of success or failure
-        setTimeout(() => {
-          setLoading(false);
-        }, 3000); 
-      
+        // setLoading(true); // Stop loading regardless of success or failure
+       
     };
 
     fetchData();
